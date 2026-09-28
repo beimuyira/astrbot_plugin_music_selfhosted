@@ -3,7 +3,6 @@ from pathlib import Path
 
 import aiofiles
 import aiohttp
-
 from astrbot.api import logger
 
 from .config import PluginConfig

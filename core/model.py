@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from pathlib import PurePosixPath
 from urllib.parse import unquote, urlparse
 
-
 _AUDIO_FORMAT_ALIASES = {
     "aac": "aac",
     "flac": "flac",

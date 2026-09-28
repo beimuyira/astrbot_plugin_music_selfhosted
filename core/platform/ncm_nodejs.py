@@ -14,7 +14,6 @@ from ..model import (
 )
 from .base import BaseMusicPlayer
 
-
 NCM_QUALITY_FALLBACKS = {
     "lossless": ["lossless", "exhigh", "higher", "standard"],
     "exhigh": ["exhigh", "higher", "standard"],

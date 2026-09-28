@@ -14,7 +14,6 @@ from ..model import (
 )
 from .base import BaseMusicPlayer
 
-
 # L-1124/QQMusicApi v0.7 Web 路由的公开 file_type 整数映射。
 # 这里只暴露普通、可直接播放的常用格式，不包含加密和铃声类型。
 QQ_QUALITY_FILE_TYPES = {

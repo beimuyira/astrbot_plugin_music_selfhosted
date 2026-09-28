@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-
 VOICE_SEND_MODES: tuple[str, ...] = (
     "record_local",
     "record_link",

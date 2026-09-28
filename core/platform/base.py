@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 from typing import ClassVar
 
 import aiohttp
-
 from astrbot.api import logger
 
 from ..config import PluginConfig
