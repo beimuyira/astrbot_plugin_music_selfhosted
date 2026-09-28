@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Validate source and version
+        shell: bash
+        run: |
+          python tools/validate_release.py
+          python -m unittest discover -s tests -v
+          VERSION="$(sed -n 's/^version:[[:space:]]*//p' metadata.yaml)"
+          test "v${VERSION}" = "${GITHUB_REF_NAME}"
+      - name: Build AstrBot plugin ZIP
+        shell: bash
+        run: |
+          PLUGIN_NAME="astrbot_plugin_music_selfhosted"
+          mkdir -p "dist/${PLUGIN_NAME}"
+          cp -r core "dist/${PLUGIN_NAME}/core"
+          cp main.py metadata.yaml _conf_schema.json README.md CHANGELOG.md \
+             LICENSE NOTICE.md SECURITY.md logo.png requirements.txt \
+             "dist/${PLUGIN_NAME}/"
+          cd dist
+          zip -r "${PLUGIN_NAME}-${GITHUB_REF_NAME}.zip" "${PLUGIN_NAME}"
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            "dist/astrbot_plugin_music_selfhosted-${GITHUB_REF_NAME}.zip" \
+            --generate-notes \
+            --title "astrbot_plugin_music_selfhosted ${GITHUB_REF_NAME}"

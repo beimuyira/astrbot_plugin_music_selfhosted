@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.zip
+.env
+.env.*
+accounts.toml
+data/
+dist/
+.ruff_cache/
+.pytest_cache/
+.idea/
+.vscode/

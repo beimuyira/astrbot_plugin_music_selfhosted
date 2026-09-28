@@ -1,0 +1,9 @@
+name: astrbot_plugin_music_selfhosted
+display_name: 私有音乐点歌
+desc: 使用自建 QQMusicApi 与网易云音乐 API 的 AstrBot 点歌插件
+version: 1.0.0
+author: beimuyira
+repo: https://github.com/beimuyira/astrbot_plugin_music_selfhosted
+tags:
+  - 音乐
+  - 自部署

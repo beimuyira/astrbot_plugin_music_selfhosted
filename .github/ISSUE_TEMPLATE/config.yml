@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安全问题
+    url: https://github.com/beimuyira/astrbot_plugin_music_selfhosted/security/advisories/new
+    about: 请勿通过公开 Issue 报告凭证泄漏或其他安全问题。

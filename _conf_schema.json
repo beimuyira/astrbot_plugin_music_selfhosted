@@ -1,0 +1,140 @@
+{
+  "default_platform": {
+    "description": "默认点歌平台",
+    "hint": "点歌命令使用的默认平台；QQ点歌和网易点歌始终可以强制指定平台",
+    "type": "string",
+    "options": ["qq", "netease"],
+    "default": "qq"
+  },
+  "qq_api_base_url": {
+    "description": "QQMusicApi 私有服务地址",
+    "hint": "L-1124/QQMusicApi Web 服务根地址；同一 Docker 网络可填写 http://qqmusic-api:8080",
+    "type": "string",
+    "default": "http://qqmusic-api:8080"
+  },
+  "qq_cookie": {
+    "description": "QQ 音乐登录 Cookie",
+    "hint": "可留空并在 QQMusicApi 的 accounts.toml 中配置默认账号；不要把此内容发送到群聊或公开日志",
+    "type": "string",
+    "default": ""
+  },
+  "qq_quality": {
+    "description": "QQ 音乐请求音质",
+    "hint": "需要账号具备对应播放权限；开启自动降级后会依次尝试兼容音质",
+    "type": "string",
+    "options": [
+      "mp3_128",
+      "mp3_320",
+      "flac",
+      "ogg_320",
+      "ogg_640",
+      "aac_192",
+      "master",
+      "atmos_2",
+      "atmos_51",
+      "atmos_71",
+      "dolby"
+    ],
+    "default": "mp3_128"
+  },
+  "netease_api_base_url": {
+    "description": "网易云私有 API 地址",
+    "hint": "NeteaseCloudMusicApi Enhanced 服务根地址；同一 Docker 网络可填写 http://ncm-api:3000",
+    "type": "string",
+    "default": "http://ncm-api:3000"
+  },
+  "netease_cookie": {
+    "description": "网易云音乐 Cookie",
+    "hint": "推荐留空并由 API 容器持有登录态；填写时仅作为失败后的备用账号，并通过 Cookie 请求头发送",
+    "type": "string",
+    "default": ""
+  },
+  "netease_quality": {
+    "description": "网易云请求音质",
+    "type": "string",
+    "options": ["standard", "higher", "exhigh", "lossless"],
+    "default": "standard"
+  },
+  "quality_fallback": {
+    "description": "音质不可用时自动降级",
+    "hint": "QQ 与网易云会从所选音质逐级尝试到兼容音质；每次降级都会写入日志",
+    "type": "bool",
+    "default": true
+  },
+  "send_cover": {
+    "description": "发送专辑封面",
+    "hint": "在音频前单独发送原始专辑封面；图片失败不会影响歌曲发送",
+    "type": "bool",
+    "default": true
+  },
+  "onebot_direct_record": {
+    "description": "OneBot 原生语音直传",
+    "hint": "aiocqhttp/NapCat 下直接把音频 URL 交给 OneBot，避免完整歌曲被转换为巨大 WAV/Base64；建议开启",
+    "type": "bool",
+    "default": true
+  },
+  "song_limit": {
+    "description": "搜索结果数量",
+    "type": "int",
+    "slider": {"min": 1, "max": 10, "step": 1},
+    "default": 5
+  },
+  "selection_mode": {
+    "description": "选歌模式",
+    "hint": "text 显示候选并等待数字；single 直接发送第一首",
+    "type": "string",
+    "options": ["text", "single"],
+    "default": "text"
+  },
+  "send_modes": {
+    "description": "歌曲发送方式及回退顺序",
+    "hint": "本地模式更可靠但会先下载到 AstrBot 临时目录；文本模式只发送播放链接",
+    "type": "list",
+    "options": [
+      "record_local(本地语音)",
+      "record_link(语音链接)",
+      "file_local(本地文件)",
+      "file_link(文件链接)",
+      "text(文本链接)"
+    ],
+    "default": [
+      "record_local(本地语音)",
+      "record_link(语音链接)",
+      "text(文本链接)"
+    ]
+  },
+  "record_unsupported": {
+    "description": "不发送语音的消息平台",
+    "type": "list",
+    "default": []
+  },
+  "file_unsupported": {
+    "description": "不发送文件的消息平台",
+    "type": "list",
+    "default": []
+  },
+  "proxy": {
+    "description": "插件请求代理",
+    "hint": "通常留空；该代理只影响 AstrBot 到两个私有 API 及音频下载的请求",
+    "type": "string",
+    "default": ""
+  },
+  "request_timeout": {
+    "description": "API 请求超时（秒）",
+    "type": "int",
+    "slider": {"min": 5, "max": 120, "step": 5},
+    "default": 15
+  },
+  "download_timeout": {
+    "description": "音频下载超时（秒）",
+    "type": "int",
+    "slider": {"min": 30, "max": 600, "step": 30},
+    "default": 120
+  },
+  "timeout": {
+    "description": "等待用户选歌超时（秒）",
+    "type": "int",
+    "slider": {"min": 15, "max": 300, "step": 5},
+    "default": 30
+  }
+}

@@ -1,0 +1,46 @@
+name: Bug 报告
+description: 报告可以稳定复现的插件问题
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先删除 Cookie、账号 ID、播放签名和公网地址。不要在公开 Issue 中提交任何登录凭证。
+  - type: input
+    id: version
+    attributes:
+      label: 插件版本
+      placeholder: 1.0.0
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: 音乐平台
+      options:
+        - QQ 音乐
+        - 网易云音乐
+        - 两者都受影响
+        - 与音乐平台无关
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 请提供命令、发送方式和稳定复现步骤。
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 已脱敏日志
+      render: text
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: 隐私确认
+      options:
+        - label: 我已经删除 Cookie、令牌、账号信息和私人服务器地址。
+          required: true
